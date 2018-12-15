@@ -20,17 +20,18 @@ Credits belong to:
 
 ## Creating Zelda Levels using GANs
 
-Some already trained models are in rl-gan\\pytorch
+Some already trained models are in rl-gan\pytorch
+Some sets of levels are included as zip files in the root folders. Their description is in the paper relative to this project
 
-# Train a model
+### Train a model
 
-- The model is trained using all the txt levels in (rlgan\\marioaiDagstuhl\\zelda\\levels), so create more or remove unnecessary levels from that folder according to the model you want to create
+- The model is trained using all the txt levels in rlgan\marioaiDagstuhl\zelda\levels, so create more or remove unnecessary levels from that folder according to the model you want to create
 
-- Generate json files for levels in (rlgan\\marioaiDagstuhl\\zelda\\levels) by running ZeldaReader.java
+- Generate json files for levels in rlgan\marioaiDagstuhl\zelda\levels by running ZeldaReader.java
 
-- Copy the exampleZelda.json from (rlgan\\marioaiDagstuhl\\zelda) to the folder (rlgan\\pytorch)
+- Copy the exampleZelda.json from rlgan\marioaiDagstuhl\zelda to the folder rlgan\pytorch
 
-- Delete or Backup the content of rl-gan\\pytorch\\samples
+- Delete or Backup the content of rl-gan\pytorch\samples
 
 - Run main.py with the arguments:
 '''python main.py --niter [AMOUNT] --zelda --cuda'''
@@ -38,7 +39,7 @@ where the AMOUNT is the number of iteriations of the training. We used 15000 for
 
 - This will train the model and produce a .pth file in rl-gan\pytorch\samples
 
-# Use the model to generate levels
+### Use the model to generate levels
 
 - Copy the file (e.g. netG_epoch_15000_0_32.pth) from rl-gan\pytorch\samples to rl-gan\pytorch and rename it to "model.pth"
 
@@ -47,3 +48,5 @@ where the AMOUNT is the number of iteriations of the training. We used 15000 for
 - Run CMAMarioSolverExport.java (from rl-gan\marioaiDagstuhl\src\reader). Adjust the parameters to run the desired number of iterations
 
 - Exported levels will be in rl-gan\GeneratedLevels, divided by difficulty
+
+## Training Zelda Agents using A2C
