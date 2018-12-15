@@ -8,7 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.util.*;
 
-public class ZeldaLevelValidator {
+public class ZeldaLevelDifficultyAsserter {
 
     public static class Pair<integer> {
         private final integer x;
@@ -30,9 +30,9 @@ public class ZeldaLevelValidator {
     }
 
     public static void main(String[] args) throws IOException {
-        String dir = System.getProperty("user.dir");
+    	String dir = System.getProperty("user.dir");
         System.out.println("Working Directory = " + dir);
-        String inputDirectory = dir + "";
+        String inputDirectory = dir + "/TestDifficulty/pcg10";
 
         /*TODO load levels from files */
         File file = new File(inputDirectory);
@@ -41,8 +41,9 @@ public class ZeldaLevelValidator {
         int duplicateCounter = 0;
         int unplayableCounter = 0;
         ArrayList<String> alreadyExported = new ArrayList();
+        int[] difficulties = {0,0,0,0,0,0,0,0,0};
 
-        new File("TestDifficulty/0").mkdirs();
+        /*new File("TestDifficulty/0").mkdirs();
         new File("TestDifficulty/1").mkdirs();
         new File("TestDifficulty/2").mkdirs();
 		new File("TestDifficulty/3").mkdirs();
@@ -51,7 +52,7 @@ public class ZeldaLevelValidator {
 		new File("TestDifficulty/6").mkdirs();
 		new File("TestDifficulty/7").mkdirs();
 		new File("TestDifficulty/8").mkdirs();
-		new File("TestDifficulty/9").mkdirs();
+		new File("TestDifficulty/9").mkdirs();*/
 
         for (String inputFile : fileList) {
             try {
@@ -86,8 +87,8 @@ public class ZeldaLevelValidator {
                         }
                     }
                     if(playable) {
-                        for (int k = 1; k < 13; k++) {
-                            for (int j = 1; j < 9; j++) {
+                        for (int k = 1; k < 12; k++) { 
+                            for (int j = 1; j < 8; j++) {
                                 if(level[j][k]==2) keyCount++;
                                 if(level[j][k]==3) doorCount++;
                                 if(level[j][k]==7) playerCount++;
@@ -131,10 +132,10 @@ public class ZeldaLevelValidator {
                                                     break;
                                         default:    difficulty = 9; break;
                                     }
-
+                                    difficulties[difficulty]++;
                                     System.out.println("Playable");
 
-                                    switch (difficulty) {
+                                    /*switch (difficulty) {
                                         case 0:     write = new FileWriter("TestDifficulty/0/zeldaTested"+alreadyExported.size()+".txt", true); break;
                                         case 1:     write = new FileWriter("TestDifficulty/1/zeldaTested"+alreadyExported.size()+".txt", true); break;
                                         case 2:     write = new FileWriter("TestDifficulty/2/zeldaTested"+alreadyExported.size()+".txt", true); break;
@@ -155,6 +156,7 @@ public class ZeldaLevelValidator {
                                         print_line.println();
                                     }
                                     print_line.close();
+                                     */
 
                                 } else {
                                     unplayableCounter ++;
@@ -180,6 +182,9 @@ public class ZeldaLevelValidator {
         } //close big for
 
         System.out.println("Unplayable: " + unplayableCounter + " Duplicate: " + duplicateCounter);
+        for (int i = 0; i < difficulties.length; i++) {
+			System.out.println("Difficuly " + i + ": " + difficulties[i]);
+		}
         return;
     }
 
